@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  
+<head>
+    <title>SpeechGPT</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="/styles/style.css">
+	<link rel="icon" type="image/x-icon" href="/images/SpeechGPT.png">
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/underscore@1.13.6/underscore-umd-min.js"></script>
+</head>
+<body>
+	<div class="main">
+		<div class="side-nav">
+			<button onclick="openSettings();"><i class="fa fa-gear"></i></button>
+			<img src="/images/user_icon.jpg">
+		</div>
+		<div class="chatbox">
+			<div id="chat">
+				<% data.forEach(element => { %>
+				<div class="question">
+					<img src="/images/user_icon.jpg">
+					<span><p><%=element.question%></p></span>
+				</div>
+				<div class="answer">
+					<img src="/images/gpt_icon.png">
+					<span><p><%=element.answer%></p></span>
+				</div>
+				<% }) %>
+			</div>
+			<form action="add" method="post" id="question-form">
+				<input type="text" placeholder="Send a message." name="inputQuestion" value="" id="input-question">
+				<button type="submit" onclick="this.innerHTML = '<i class=\'fa fa-spinner fa-pulse\'></i>';"><i class="fa fa-paper-plane"></i></button>
+			</form>
+		</div>
+		<div class="settings-nav" id="settings-div">
+			<div class="settings-nav-inside">
+				<a href="javascript:void(0)" class="closebtn" onclick="closeSettings();">&times;</a>
+				<h1>Speech Settings</h1>
+				<br>
+				<form action="delete" method="post">
+					<button type="submit" id="clear-btn">Clear conversation</button>
+				</form>
+			</div>
+		</div>
+    </div>
+    <script>
+		
+		function speak() {
+			var unescaped_answer = new DOMParser().parseFromString("<%= data[data.length - 1].answer%>", "text/html").documentElement.textContent;
+			const msg = new SpeechSynthesisUtterance(unescaped_answer);
+			msg.voice = getVoice();
+			window.speechSynthesis.speak(msg);
+
+		}
+
+		function getVoice() {
+			const voiceIndex = 2;
+			return speechSynthesis.getVoices()[voiceIndex];
+		}
+
+		function voiceLoaded() {
+			return speechSynthesis.getVoices().length;
+		}
+		
+		if ('speechSynthesis' in window) {
+			if (voiceLoaded()) {
+				speak();
+			} else {
+				speechSynthesis.addEventListener('voiceschanged', speak);
+			}
+		} else{
+			alert("Sorry, this browser does not support the speech synthesis API!");
+		}
+		
+		
+		function openSettings() {
+			document.getElementById("settings-div").style.visibility = "visible";
+		}
+		
+		function closeSettings() {
+			document.getElementById("settings-div").style.visibility = "hidden";
+		}
+
+	</script>
+</body>
+</html>
