@@ -13,7 +13,7 @@ let data = [{
 const app = express()
 
 const api = new ChatGPTAPI({
-	apiKey: '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'
+	apiKey: ''
 });
 
 
