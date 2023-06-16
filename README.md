@@ -7,24 +7,24 @@ Experience conversations with more depth, emotion and feeling by using SpeechGPT
 <br>
 **IMPORTANT NOTE: To succssfully execute this project, your ChatGPT Api key is required in app.js**
 <br><br>
-This is the first version of SpeechGPT.
+This is the latest version of SpeechGPT.
 In this version, the following features are:
 
 
-- **Text-to-speech AI language model (ChatGPT)**
+- **Text-to-speech AI language model (ChatGPT):**
 Your responses are sent to ChatGPT through the API and ChatGPT's answers are received by the program using the API. These answers are
 converted to a fully utf-8 encoded string, devoid of any HTML entities. This is done so that the text-to-speech does not cause the synthesized
 speech to utter something like: "The dog and hashtag thirty-four semicolon and the cat..." because of the HTML entity "&#34;"
 You can see the response that ChatGPT replied, but you will also hear it.
 
-- **Settings**
+- **User ability to use speech-to-text:**
+As the AI "speaks" to the user, the user is also able to speak to the AI, through a speech-to-text conversion process. The converted text from the speech input is sent to ChatGPT through the API. So, it will literally act like Alexa on a computer, and further enhances the user's conversation with the AI language model, as it would feel more real and detailed.
+
+- **Settings:**
 There is a settings feature, but this version's settings interface only contains a button to clear the current conversation. Other future releases may contain features in the settings interface that allow the user to be able to change the voice, rate of words, pitch and volume of the synthesized speech.
 <br><br>
 ## Features that will be taken in consideration for future releases:
-- **User ability to use speech-to-text**
-As the AI "speaks" to the user, the user can also be able to speak to the AI, through a speech-to-text conversion process. The converted text from the speech input would be sent to ChatGPT through the API. So, it will literally act like Alexa on a computer, and will even further enhance the user's conversation with the AI language model, as it would feel more real and detailed.
-
-- **Record of past conversations**
+- **Record of past conversations:**
 The user would be able to easily access past conversations with the AI.
 <br><br>
 ## Package/Module Prerequisites
