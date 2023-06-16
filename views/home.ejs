@@ -31,10 +31,13 @@
 				</div>
 				<% }) %>
 			</div>
-			<form action="add" method="post" id="question-form">
-				<input type="text" placeholder="Send a message." name="inputQuestion" value="" id="input-question">
-				<button type="submit" onclick="this.innerHTML = '<i class=\'fa fa-spinner fa-pulse\'></i>';"><i class="fa fa-paper-plane"></i></button>
-			</form>
+			<div class="messaging">
+				<button onclick="onRecordButtonClick();" id="mic-btn"><i class="fa fa-microphone"></i></button>
+				<form action="add" method="post" id="question-form">
+					<input type="text" placeholder="Send a message." name="inputQuestion" value="" id="input-question">
+					<button type="submit" onclick="this.innerHTML = '<i class=\'fa fa-spinner fa-pulse\'></i>';" id="question-send-btn"><i class="fa fa-paper-plane"></i></button>
+				</form>
+			</div>
 		</div>
 		<div class="settings-nav" id="settings-div">
 			<div class="settings-nav-inside">
@@ -48,6 +51,12 @@
 		</div>
     </div>
     <script>
+		// Updates the chat div such that it is at the bottom always (or rather every millisecond) so that user need not scroll each time new answer.
+		window.setInterval(function() {
+			var elem = document.getElementById("chat");
+			elem.scrollTop = elem.scrollHeight;
+		}, 1);
+		
 		
 		function speak() {
 			var unescaped_answer = new DOMParser().parseFromString("<%= data[data.length - 1].answer%>", "text/html").documentElement.textContent;
@@ -74,6 +83,41 @@
 			}
 		} else{
 			alert("Sorry, this browser does not support the speech synthesis API!");
+		}
+		
+		
+		function onRecordButtonClick() {
+			var micButton = document.getElementById("mic-btn");
+			micButton.style.backgroundColor = "red";
+			micButton.style.color = "white";
+			micButton.style.border = "1.5px solid red";
+			micButton.style.borderRadius = "50%";
+			
+			
+			var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
+			var recognition = new SpeechRecognition();
+			
+			recognition.onstart = function() {
+				
+			};
+			
+			recognition.onspeechend = function() {
+				recognition.stop();
+				micButton.style.backgroundColor = "#f7f7f8";
+				micButton.style.color = "gray";
+				micButton.style.border = "1.5px solid #dededf";
+				micButton.style.borderRadius = "15%";
+			};
+		  
+			
+			recognition.onresult = function(event) {
+				var transcript = event.results[0][0].transcript;
+				var confidence = event.results[0][0].confidence;
+				document.getElementById("input-question").value = transcript;
+				document.getElementById("question-send-btn").click();
+			};
+		  
+			recognition.start(); // start recognition
 		}
 		
 		
