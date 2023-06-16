@@ -59,7 +59,7 @@
 		
 		
 		function speak() {
-			var unescaped_answer = new DOMParser().parseFromString("<%= data[data.length - 1].answer%>", "text/html").documentElement.textContent;
+			var unescaped_answer = new DOMParser().parseFromString("<%= data[data.length - 1].answer.replace(/\r?\n|\r/g, ' ')%>", "text/html").documentElement.textContent;
 			const msg = new SpeechSynthesisUtterance(unescaped_answer);
 			msg.voice = getVoice();
 			window.speechSynthesis.speak(msg);
