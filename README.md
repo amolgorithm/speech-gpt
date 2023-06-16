@@ -1,5 +1,5 @@
 # SpeechGPT
-What if ChatGPT had its own voice? What if this is Alexa brought to a higher intelligence of several folds? Explore this repo to experience this innovative exhibition of AI language models.
+What if ChatGPT had its own voice? What if you could speak to it with your voice? What if this is Alexa brought to a higher intelligence of several folds? Explore this repo to experience this innovative exhibition of AI language models.
 
 ![](./public/images/SpeechGPT.png)
 <br><br>
