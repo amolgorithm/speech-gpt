@@ -13,7 +13,7 @@ let data = [{
 const app = express()
 
 const api = new ChatGPTAPI({
-	apiKey: ''
+	apiKey: 'YOUR_API_KEY'
 });
 
 
@@ -22,7 +22,7 @@ async function gptResponse(question) {
 		parentMessageId: response.id
 	});
 	
-	return response.text.replace('ChatGPT', 'SpeechGPT (powered by OpenAI ChatGPT)').replace('\n', ' ');
+	return response.text.replace('ChatGPT', 'SpeechGPT (powered by OpenAI ChatGPT)');
 }
 
 
@@ -50,10 +50,9 @@ app.post("/add", (req, res) => {
     const inputQuestion = req.body.inputQuestion;
 	const gptAnswer = gptResponse(inputQuestion)
 	gptAnswer.then(function(result) {
-		console.log(result.replace('\n', ' '));
 		data.push({
 			question: inputQuestion,
-			answer: result.replace('\n', ' ')
+			answer: result
 		})
 		res.render("home", {
 			data: data
