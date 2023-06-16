@@ -70,7 +70,28 @@ body {
 	background-color: #f7f7f8;
 }
 
-.chatbox form input {
+#mic-btn {
+	position: absolute;
+	bottom: 5.75%;
+	left: 21.5vw;
+	height: 5vh;
+	width: 5vh;
+	background-color: #f7f7f8;
+	color: gray;
+	border: 1.5px solid #dededf;
+	border-radius: 15%;
+	padding: 6px;
+	font-size: 15px;
+	text-align: center;
+	transition: 0.5s;
+}
+
+#mic-btn:hover {
+	background-color: lightgray;
+}
+
+
+.chatbox .messaging form input {
 	position: absolute;
 	bottom: 5%;
 	right: 23vw;
@@ -82,7 +103,7 @@ body {
 	padding: 15px;
 }
 
-.chatbox form button {
+.chatbox .messaging form button {
 	position: absolute;
 	bottom: 5.75%;
 	right: 23.75vw;
@@ -97,7 +118,7 @@ body {
 	text-align: center;
 }
 
-.chatbox form button:hover {
+.chatbox .messaging form button:hover {
 	background-color: #770737;
 }
 
@@ -195,9 +216,10 @@ body {
 	margin-left: 1vw;
 	font-size: 15px;
 	padding: 10px;
+	transition: 0.5s border-radius;
 }
 
 
 .settings-nav-inside #clear-btn:hover {
-	border-radius: 10px;
+	border-radius: 7px;
 }
