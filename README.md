@@ -27,7 +27,7 @@ There is a settings feature, but this version's settings interface only contains
 - **Record of past conversations:**
 The user would be able to easily access past conversations with the AI.
 - **User ability to pause/stop the synthesized speech:**
-There would be a button that would allow the user to stop or pause the synthesized speech utterances, when clicked.
+A button that would allow the user to stop or pause the synthesized speech utterances, when clicked.
 <br><br>
 ## Package/Module Prerequisites
 - Node.js v18+
